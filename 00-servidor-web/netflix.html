@@ -59,7 +59,7 @@
     
     .banner {
       background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%), 
-                  url("https://image.tmdb.org/t/p/original/ggFHVNu6YYI5L9pCfOacjizRGt.jpg");
+                  url("https://image.tmdb.org/t/p/original/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg");
       background-size: cover;
       background-position: center;
       height: 100vh;
@@ -308,7 +308,6 @@
           <li class="nav-item"><a class="nav-link" href="#">Series</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Películas</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Novedades populares</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Mi lista</a></li>
         </ul>
         <div class="ms-4">
           <i class="fas fa-search text-white me-3" style="cursor: pointer;"></i>
@@ -324,7 +323,7 @@
   <div class="banner">
     <div class="banner-content text-white">
       <h1>La Casa de Papel</h1>
-      <p>Un atraco que cambió la historia. Conviértete en parte del plan.</p>
+      <p>El Profesor recluta a personas con habilidades específicas y que no tienen nada que perder para llevar a cabo su ambicioso plan. </p>
       <div class="d-flex">
         <button class="btn btn-play btn-netflix"><i class="fas fa-play me-2"></i>Reproducir</button>
         <button class="btn btn-info btn-netflix"><i class="fas fa-info-circle me-2"></i>Más información</button>
@@ -339,11 +338,33 @@
       <button class="scroll-button scroll-left" onclick="scrollRow(this, -1)"><i class="fas fa-chevron-left"></i></button>
       <div class="row-wrapper" id="row1">
         <div class="movie-card">
+          <img src="https://image.tmdb.org/t/p/w500/dDlEmu3EZ0Pgg93K2SVNLCjCSvE.jpg" alt="Gambito de Dama">
+          <div class="movie-info">
+            <div class="movie-title">El juego del calamar</div>
+            <div class="movie-meta">
+              <span>98% coincidencia</span>
+              <span><i class="fas fa-plus"></i></span>
+            </div>
+          </div>
+        </div>
+
+<div class="movie-card">
+  <img src="https://image.tmdb.org/t/p/w500/nel144y4dIOdFFid6twN5mAX9Yd.jpg" alt="13 Reasons Why">
+  <div class="movie-info">
+    <div class="movie-title">13 Reasons Why</div>
+    <div class="movie-meta">
+      <span>88% coincidencia</span>
+      <span><i class="fas fa-plus"></i></span>
+    </div>
+  </div>
+</div>
+
+        <div class="movie-card">
           <img src="https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg" alt="Breaking Bad">
           <div class="movie-info">
             <div class="movie-title">Breaking Bad</div>
             <div class="movie-meta">
-              <span>98% coincidencia</span>
+              <span>97% coincidencia</span>
               <span><i class="fas fa-plus"></i></span>
             </div>
           </div>
@@ -353,73 +374,15 @@
           <div class="movie-info">
             <div class="movie-title">Stranger Things</div>
             <div class="movie-meta">
-              <span>95% coincidencia</span>
-              <span><i class="fas fa-plus"></i></span>
-            </div>
-          </div>
-        </div>
-        <div class="movie-card">
-          <img src="https://image.tmdb.org/t/p/w500/uq5Ww9wgKORs3KqQibFPREePQfX.jpg" alt="Narcos">
-          <div class="movie-info">
-            <div class="movie-title">Narcos</div>
-            <div class="movie-meta">
-              <span>93% coincidencia</span>
-              <span><i class="fas fa-plus"></i></span>
-            </div>
-          </div>
-        </div>
-        <div class="movie-card">
-          <img src="https://image.tmdb.org/t/p/w500/ndlQ2Cuc3cjTL7lTynw6I4boP4S.jpg" alt="You">
-          <div class="movie-info">
-            <div class="movie-title">You</div>
-            <div class="movie-meta">
-              <span>91% coincidencia</span>
-              <span><i class="fas fa-plus"></i></span>
-            </div>
-          </div>
-        </div>
-        <div class="movie-card">
-          <img src="https://image.tmdb.org/t/p/w500/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg" alt="The Witcher">
-          <div class="movie-info">
-            <div class="movie-title">The Witcher</div>
-            <div class="movie-meta">
-              <span>89% coincidencia</span>
-              <span><i class="fas fa-plus"></i></span>
-            </div>
-          </div>
-        </div>
-        <div class="movie-card">
-          <img src="https://image.tmdb.org/t/p/w500/9yxep7oJdkj3Pla9TD9gKflRApY.jpg" alt="Peaky Blinders">
-          <div class="movie-info">
-            <div class="movie-title">Peaky Blinders</div>
-            <div class="movie-meta">
               <span>96% coincidencia</span>
               <span><i class="fas fa-plus"></i></span>
             </div>
           </div>
         </div>
         <div class="movie-card">
-          <img src="https://image.tmdb.org/t/p/w500/dDlEmu3EZ0Pgg93K2SVNLCjCSvE.jpg" alt="The Queen's Gambit">
+          <img src="https://image.tmdb.org/t/p/w500/1qpUk27LVI9UoTS7S0EixUBj5aR.jpg" alt="La Casa de Papel">
           <div class="movie-info">
-            <div class="movie-title">The Queen's Gambit</div>
-            <div class="movie-meta">
-              <span>98% coincidencia</span>
-              <span><i class="fas fa-plus"></i></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <button class="scroll-button scroll-right" onclick="scrollRow(this, 1)"><i class="fas fa-chevron-right"></i></button>
-    </div>
-
-    <h2 class="section-title">Mi lista</h2>
-    <div class="row-container">
-      <button class="scroll-button scroll-left" onclick="scrollRow(this, -1)"><i class="fas fa-chevron-left"></i></button>
-      <div class="row-wrapper" id="row2">
-        <div class="movie-card">
-          <img src="https://image.tmdb.org/t/p/w500/7dFZJ2ZJJdcmkp05B9NWlqTJ5tq.jpg" alt="Black Mirror">
-          <div class="movie-info">
-            <div class="movie-title">Black Mirror</div>
+            <div class="movie-title">Halo</div>
             <div class="movie-meta">
               <span>94% coincidencia</span>
               <span><i class="fas fa-plus"></i></span>
@@ -427,59 +390,9 @@
           </div>
         </div>
         <div class="movie-card">
-          <img src="https://image.tmdb.org/t/p/w500/2Xx1q4Ld5nWSljY0hGXjAN6bCXJ.jpg" alt="Dark">
+          <img src="https://image.tmdb.org/t/p/w500/7dFZJ2ZJJdcmkp05B9NWlqTJ5tq.jpg" alt="Black Mirror">
           <div class="movie-info">
-            <div class="movie-title">Dark</div>
-            <div class="movie-meta">
-              <span>97% coincidencia</span>
-              <span><i class="fas fa-plus"></i></span>
-            </div>
-          </div>
-        </div>
-        <div class="movie-card">
-          <img src="https://image.tmdb.org/t/p/w500/vUUqzWa2LnHIVqkaKVlVGkVcZIW.jpg" alt="Peaky Blinders">
-          <div class="movie-info">
-            <div class="movie-title">Peaky Blinders</div>
-            <div class="movie-meta">
-              <span>96% coincidencia</span>
-              <span><i class="fas fa-plus"></i></span>
-            </div>
-          </div>
-        </div>
-        <div class="movie-card">
-          <img src="https://image.tmdb.org/t/p/w500/dDlEmu3EZ0Pgg93K2SVNLCjCSvE.jpg" alt="The Queen's Gambit">
-          <div class="movie-info">
-            <div class="movie-title">The Queen's Gambit</div>
-            <div class="movie-meta">
-              <span>98% coincidencia</span>
-              <span><i class="fas fa-plus"></i></span>
-            </div>
-          </div>
-        </div>
-        <div class="movie-card">
-          <img src="https://image.tmdb.org/t/p/w500/6fVX4FyPfQoA1WQHt6nNgmZgMe6.jpg" alt="Squid Game">
-          <div class="movie-info">
-            <div class="movie-title">Squid Game</div>
-            <div class="movie-meta">
-              <span>95% coincidencia</span>
-              <span><i class="fas fa-plus"></i></span>
-            </div>
-          </div>
-        </div>
-        <div class="movie-card">
-          <img src="https://image.tmdb.org/t/p/w500/1qpUk27LVI9UoTS7S0EixUBj5aR.jpg" alt="Money Heist">
-          <div class="movie-info">
-            <div class="movie-title">Money Heist</div>
-            <div class="movie-meta">
-              <span>99% coincidencia</span>
-              <span><i class="fas fa-plus"></i></span>
-            </div>
-          </div>
-        </div>
-        <div class="movie-card">
-          <img src="https://image.tmdb.org/t/p/w500/5hNcsnMkwU2LknLoru73c76el3z.jpg" alt="Ozark">
-          <div class="movie-info">
-            <div class="movie-title">Ozark</div>
+            <div class="movie-title">Black Mirror</div>
             <div class="movie-meta">
               <span>93% coincidencia</span>
               <span><i class="fas fa-plus"></i></span>
@@ -490,40 +403,10 @@
       <button class="scroll-button scroll-right" onclick="scrollRow(this, 1)"><i class="fas fa-chevron-right"></i></button>
     </div>
 
-    <h2 class="section-title">Continuar viendo</h2>
+    <h2 class="section-title">Series populares</h2>
     <div class="row-container">
       <button class="scroll-button scroll-left" onclick="scrollRow(this, -1)"><i class="fas fa-chevron-left"></i></button>
-      <div class="row-wrapper" id="row3">
-        <div class="movie-card">
-          <img src="https://image.tmdb.org/t/p/w500/5hNcsnMkwU2LknLoru73c76el3z.jpg" alt="Ozark">
-          <div class="movie-info">
-            <div class="movie-title">Ozark</div>
-            <div class="movie-meta">
-              <span>93% coincidencia</span>
-              <span><i class="fas fa-plus"></i></span>
-            </div>
-          </div>
-        </div>
-        <div class="movie-card">
-          <img src="https://image.tmdb.org/t/p/w500/1qpUk27LVI9UoTS7S0EixUBj5aR.jpg" alt="Money Heist">
-          <div class="movie-info">
-            <div class="movie-title">Money Heist</div>
-            <div class="movie-meta">
-              <span>99% coincidencia</span>
-              <span><i class="fas fa-plus"></i></span>
-            </div>
-          </div>
-        </div>
-        <div class="movie-card">
-          <img src="https://image.tmdb.org/t/p/w500/6fVX4FyPfQoA1WQHt6nNgmZgMe6.jpg" alt="Squid Game">
-          <div class="movie-info">
-            <div class="movie-title">Squid Game</div>
-            <div class="movie-meta">
-              <span>95% coincidencia</span>
-              <span><i class="fas fa-plus"></i></span>
-            </div>
-          </div>
-        </div>
+      <div class="row-wrapper" id="row2">
         <div class="movie-card">
           <img src="https://image.tmdb.org/t/p/w500/vUUqzWa2LnHIVqkaKVlVGkVcZIW.jpg" alt="Peaky Blinders">
           <div class="movie-info">
@@ -534,20 +417,54 @@
             </div>
           </div>
         </div>
+
+<div class="movie-card">
+  <img src="https://image.tmdb.org/t/p/w500/7WUHnWGx5OO145IRxPDUkQSh4C7.jpg" alt="Game of Thrones">
+  <div class="movie-info">
+    <div class="movie-title">Game of Thrones</div>
+    <div class="movie-meta">
+      <span>94% coincidencia</span>
+      <span><i class="fas fa-plus"></i></span>
+    </div>
+  </div>
+</div>
+
         <div class="movie-card">
-          <img src="https://image.tmdb.org/t/p/w500/2Xx1q4Ld5nWSljY0hGXjAN6bCXJ.jpg" alt="Dark">
+  <img src="https://m.media-amazon.com/images/M/MV5BMDA4NjQzN2ItZDhhNC00ZjVlLWFjNTgtMTEyNDQyOGNjMDE1XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_FMjpg_UX1000_.jpg" alt="Dr. House">
+  <div class="movie-info">
+    <div class="movie-title">Dr. House</div>
+    <div class="movie-meta">
+      <span>97% coincidencia</span>
+      <span><i class="fas fa-plus"></i></span>
+    </div>
+  </div>
+</div>
+
+<div class="movie-card">
+  <img src="../images/pasiong.jpg" alt="Pasión de Gavilanes">
+  <div class="movie-info">
+    <div class="movie-title">Pasión de Gavilanes</div>
+    <div class="movie-meta">
+      <span>96% coincidencia</span>
+      <span><i class="fas fa-plus"></i></span>
+    </div>
+  </div>
+</div>
+
+        <div class="movie-card">
+          <img src="https://image.tmdb.org/t/p/w500/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg" alt="The Witcher">
           <div class="movie-info">
-            <div class="movie-title">Dark</div>
+            <div class="movie-title">Avengers: Infinity War</div>
             <div class="movie-meta">
-              <span>97% coincidencia</span>
+              <span>92% coincidencia</span>
               <span><i class="fas fa-plus"></i></span>
             </div>
           </div>
         </div>
         <div class="movie-card">
-          <img src="https://image.tmdb.org/t/p/w500/7dFZJ2ZJJdcmkp05B9NWlqTJ5tq.jpg" alt="Black Mirror">
+          <img src="https://image.tmdb.org/t/p/w500/5hNcsnMkwU2LknLoru73c76el3z.jpg" alt="Ozark">
           <div class="movie-info">
-            <div class="movie-title">Black Mirror</div>
+            <div class="movie-title">Ozark</div>
             <div class="movie-meta">
               <span>94% coincidencia</span>
               <span><i class="fas fa-plus"></i></span>
