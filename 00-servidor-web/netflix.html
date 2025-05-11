@@ -5,68 +5,317 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Netflix - Catálogo</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
+    :root {
+      --netflix-red: #e50914;
+      --netflix-dark: #141414;
+      --netflix-gray: #808080;
+    }
+    
     body {
-      background-color: #111;
+      background-color: var(--netflix-dark);
       color: #fff;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      overflow-x: hidden;
     }
+    
+    @font-face {
+      font-family: 'Netflix Sans';
+      src: url('https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+    }
+    
     .navbar {
-      background-color: #141414;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+      padding: 20px 50px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: background-color 0.4s;
     }
+    
+    .navbar.scrolled {
+      background-color: var(--netflix-dark);
+    }
+    
     .navbar-brand img {
-      height: 30px;
+      height: 45px;
+      filter: brightness(0) invert(1);
     }
+    
+    .nav-link {
+      color: #fff !important;
+      font-size: 14px;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+    
+    .nav-link:hover {
+      color: var(--netflix-gray) !important;
+    }
+    
     .banner {
-      background-image: url("https://wallpaperaccess.com/full/2703652.jpg");
+      background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%), 
+                  url("https://image.tmdb.org/t/p/original/ggFHVNu6YYI5L9pCfOacjizRGt.jpg");
       background-size: cover;
       background-position: center;
-      height: 75vh;
+      height: 100vh;
       position: relative;
+      margin-top: -80px;
     }
+    
     .banner-content {
       position: absolute;
-      bottom: 30px;
+      bottom: 25%;
       left: 50px;
       max-width: 600px;
+      z-index: 1;
     }
+    
     .banner-content h1 {
-      font-size: 3rem;
-      font-weight: bold;
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     }
+    
     .banner-content p {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      margin-bottom: 25px;
     }
-    .section-title {
-      margin-top: 2rem;
-      margin-bottom: 1rem;
+    
+    .btn-netflix {
+      padding: 8px 25px;
+      font-size: 1.2rem;
       font-weight: bold;
+      border-radius: 4px;
+    }
+    
+    .btn-play {
+      background-color: white;
+      color: black;
+      margin-right: 15px;
+    }
+    
+    .btn-play:hover {
+      background-color: rgba(255,255,255,0.8);
+    }
+    
+    .btn-info {
+      background-color: rgba(109, 109, 110, 0.7);
+      color: white;
+    }
+    
+    .btn-info:hover {
+      background-color: rgba(109, 109, 110, 0.5);
+      color: white;
+    }
+    
+    .section-title {
+      margin: 30px 0 15px 50px;
+      font-weight: 700;
       font-size: 1.8rem;
     }
-    .card img {
-      height: 250px;
+    
+    .row-container {
+      padding: 0 50px;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    
+    .row-wrapper {
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-behavior: smooth;
+      white-space: nowrap;
+      padding: 20px 0;
+      position: relative;
+    }
+    
+    .row-wrapper::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .movie-card {
+      display: inline-block;
+      width: 220px;
+      margin-right: 10px;
+      transition: transform 0.3s;
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    .movie-card:hover {
+      transform: scale(1.1);
+      z-index: 10;
+    }
+    
+    .movie-card img {
+      width: 100%;
+      height: 120px;
       object-fit: cover;
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+    
+    .movie-card:hover img {
+      height: 150px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+    
+    .movie-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+      padding: 20px 10px 10px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      border-radius: 0 0 4px 4px;
+    }
+    
+    .movie-card:hover .movie-info {
+      opacity: 1;
+    }
+    
+    .movie-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      white-space: normal;
+    }
+    
+    .movie-meta {
+      font-size: 12px;
+      color: var(--netflix-gray);
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .scroll-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      border: none;
+      color: white;
+      font-size: 24px;
+      z-index: 10;
+      opacity: 0;
+      transition: opacity 0.3s;
+      cursor: pointer;
+    }
+    
+    .row-container:hover .scroll-button {
+      opacity: 1;
+    }
+    
+    .scroll-left {
+      left: 0;
+      border-radius: 4px 0 0 4px;
+    }
+    
+    .scroll-right {
+      right: 0;
+      border-radius: 0 4px 4px 0;
+    }
+    
+    footer {
+      background-color: var(--netflix-dark);
+      color: var(--netflix-gray);
+      padding: 50px;
+      text-align: center;
+      font-size: 13px;
+    }
+    
+    .social-icons {
+      margin-bottom: 20px;
+    }
+    
+    .social-icons a {
+      color: var(--netflix-gray);
+      font-size: 20px;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+    
+    .social-icons a:hover {
+      color: white;
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    
+    .footer-links a {
+      color: var(--netflix-gray);
+      margin: 0 15px 10px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+    }
+    
+    @media (max-width: 768px) {
+      .banner-content {
+        left: 20px;
+        max-width: 80%;
+      }
+      
+      .banner-content h1 {
+        font-size: 2.5rem;
+      }
+      
+      .banner-content p {
+        font-size: 1rem;
+      }
+      
+      .section-title, .row-container {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      
+      .movie-card {
+        width: 150px;
+      }
     }
   </style>
 </head>
 <body>
 
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Netflix_icon.svg" alt="Netflix Logo" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo" />
       </a>
-      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon bg-light"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link text-white" href="#">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link text-white" href="#">Películas</a></li>
-          <li class="nav-item"><a class="nav-link text-white" href="#">Series</a></li>
-          <li class="nav-item"><a class="nav-link text-white" href="#">Mi lista</a></li>
+      <div class="d-flex align-items-center">
+        <ul class="navbar-nav d-flex flex-row">
+          <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Series</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Películas</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Novedades populares</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Mi lista</a></li>
         </ul>
+        <div class="ms-4">
+          <i class="fas fa-search text-white me-3" style="cursor: pointer;"></i>
+          <i class="fas fa-bell text-white me-3" style="cursor: pointer;"></i>
+          <img src="https://occ-0-2794-2219.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABY20DrC9-11ewwAs6nfEgb1vrORxRPP9IGmlW1WtKuaLIz8VxCx5NryzDK3_ez064IsBGdXjVUT59G5IRuFdqZlCJCneepU.png?r=229" 
+               alt="Profile" style="width: 32px; height: 32px; border-radius: 4px; cursor: pointer;">
+        </div>
       </div>
     </div>
   </nav>
@@ -76,86 +325,304 @@
     <div class="banner-content text-white">
       <h1>La Casa de Papel</h1>
       <p>Un atraco que cambió la historia. Conviértete en parte del plan.</p>
-      <button class="btn btn-danger me-2">Ver ahora</button>
-      <button class="btn btn-light">Más información</button>
+      <div class="d-flex">
+        <button class="btn btn-play btn-netflix"><i class="fas fa-play me-2"></i>Reproducir</button>
+        <button class="btn btn-info btn-netflix"><i class="fas fa-info-circle me-2"></i>Más información</button>
+      </div>
     </div>
   </div>
 
   <!-- Catálogo -->
-  <div class="container">
-    <h2 class="section-title">Tendencias</h2>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
-      <div class="col">
-        <div class="card bg-dark border-0">
-          <img src="images/breaking-bad.jpg" class="card-img-top" alt="Breaking Bad">
-          <div class="card-body">
-            <h5 class="card-title text-white">Breaking Bad</h5>
+  <div class="container-fluid p-0">
+    <h2 class="section-title">Tendencias ahora</h2>
+    <div class="row-container">
+      <button class="scroll-button scroll-left" onclick="scrollRow(this, -1)"><i class="fas fa-chevron-left"></i></button>
+      <div class="row-wrapper" id="row1">
+        <div class="movie-card">
+          <img src="https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg" alt="Breaking Bad">
+          <div class="movie-info">
+            <div class="movie-title">Breaking Bad</div>
+            <div class="movie-meta">
+              <span>98% coincidencia</span>
+              <span><i class="fas fa-plus"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="movie-card">
+          <img src="https://image.tmdb.org/t/p/w500/x2LSRK2Cm7MZhjluni1msVJ3wDF.jpg" alt="Stranger Things">
+          <div class="movie-info">
+            <div class="movie-title">Stranger Things</div>
+            <div class="movie-meta">
+              <span>95% coincidencia</span>
+              <span><i class="fas fa-plus"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="movie-card">
+          <img src="https://image.tmdb.org/t/p/w500/uq5Ww9wgKORs3KqQibFPREePQfX.jpg" alt="Narcos">
+          <div class="movie-info">
+            <div class="movie-title">Narcos</div>
+            <div class="movie-meta">
+              <span>93% coincidencia</span>
+              <span><i class="fas fa-plus"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="movie-card">
+          <img src="https://image.tmdb.org/t/p/w500/ndlQ2Cuc3cjTL7lTynw6I4boP4S.jpg" alt="You">
+          <div class="movie-info">
+            <div class="movie-title">You</div>
+            <div class="movie-meta">
+              <span>91% coincidencia</span>
+              <span><i class="fas fa-plus"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="movie-card">
+          <img src="https://image.tmdb.org/t/p/w500/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg" alt="The Witcher">
+          <div class="movie-info">
+            <div class="movie-title">The Witcher</div>
+            <div class="movie-meta">
+              <span>89% coincidencia</span>
+              <span><i class="fas fa-plus"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="movie-card">
+          <img src="https://image.tmdb.org/t/p/w500/9yxep7oJdkj3Pla9TD9gKflRApY.jpg" alt="Peaky Blinders">
+          <div class="movie-info">
+            <div class="movie-title">Peaky Blinders</div>
+            <div class="movie-meta">
+              <span>96% coincidencia</span>
+              <span><i class="fas fa-plus"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="movie-card">
+          <img src="https://image.tmdb.org/t/p/w500/dDlEmu3EZ0Pgg93K2SVNLCjCSvE.jpg" alt="The Queen's Gambit">
+          <div class="movie-info">
+            <div class="movie-title">The Queen's Gambit</div>
+            <div class="movie-meta">
+              <span>98% coincidencia</span>
+              <span><i class="fas fa-plus"></i></span>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col">
-        <div class="card bg-dark border-0">
-          <img src="images/stranger-things.jpg" class="card-img-top" alt="Stranger Things">
-          <div class="card-body">
-            <h5 class="card-title text-white">Stranger Things</h5>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card bg-dark border-0">
-          <img src="images/narcos.jpg" class="card-img-top" alt="Narcos">
-          <div class="card-body">
-            <h5 class="card-title text-white">Narcos</h5>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card bg-dark border-0">
-          <img src="images/you.jpg" class="card-img-top" alt="You">
-          <div class="card-body">
-            <h5 class="card-title text-white">You</h5>
-          </div>
-        </div>
-      </div>
+      <button class="scroll-button scroll-right" onclick="scrollRow(this, 1)"><i class="fas fa-chevron-right"></i></button>
     </div>
 
-    <h2 class="section-title mt-5">Mi Lista</h2>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
-      <div class="col">
-        <div class="card bg-dark border-0">
-          <img src="images/black-mirror.jpg" class="card-img-top" alt="Black Mirror">
-          <div class="card-body">
-            <h5 class="card-title text-white">Black Mirror</h5>
+    <h2 class="section-title">Mi lista</h2>
+    <div class="row-container">
+      <button class="scroll-button scroll-left" onclick="scrollRow(this, -1)"><i class="fas fa-chevron-left"></i></button>
+      <div class="row-wrapper" id="row2">
+        <div class="movie-card">
+          <img src="https://image.tmdb.org/t/p/w500/7dFZJ2ZJJdcmkp05B9NWlqTJ5tq.jpg" alt="Black Mirror">
+          <div class="movie-info">
+            <div class="movie-title">Black Mirror</div>
+            <div class="movie-meta">
+              <span>94% coincidencia</span>
+              <span><i class="fas fa-plus"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="movie-card">
+          <img src="https://image.tmdb.org/t/p/w500/2Xx1q4Ld5nWSljY0hGXjAN6bCXJ.jpg" alt="Dark">
+          <div class="movie-info">
+            <div class="movie-title">Dark</div>
+            <div class="movie-meta">
+              <span>97% coincidencia</span>
+              <span><i class="fas fa-plus"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="movie-card">
+          <img src="https://image.tmdb.org/t/p/w500/vUUqzWa2LnHIVqkaKVlVGkVcZIW.jpg" alt="Peaky Blinders">
+          <div class="movie-info">
+            <div class="movie-title">Peaky Blinders</div>
+            <div class="movie-meta">
+              <span>96% coincidencia</span>
+              <span><i class="fas fa-plus"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="movie-card">
+          <img src="https://image.tmdb.org/t/p/w500/dDlEmu3EZ0Pgg93K2SVNLCjCSvE.jpg" alt="The Queen's Gambit">
+          <div class="movie-info">
+            <div class="movie-title">The Queen's Gambit</div>
+            <div class="movie-meta">
+              <span>98% coincidencia</span>
+              <span><i class="fas fa-plus"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="movie-card">
+          <img src="https://image.tmdb.org/t/p/w500/6fVX4FyPfQoA1WQHt6nNgmZgMe6.jpg" alt="Squid Game">
+          <div class="movie-info">
+            <div class="movie-title">Squid Game</div>
+            <div class="movie-meta">
+              <span>95% coincidencia</span>
+              <span><i class="fas fa-plus"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="movie-card">
+          <img src="https://image.tmdb.org/t/p/w500/1qpUk27LVI9UoTS7S0EixUBj5aR.jpg" alt="Money Heist">
+          <div class="movie-info">
+            <div class="movie-title">Money Heist</div>
+            <div class="movie-meta">
+              <span>99% coincidencia</span>
+              <span><i class="fas fa-plus"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="movie-card">
+          <img src="https://image.tmdb.org/t/p/w500/5hNcsnMkwU2LknLoru73c76el3z.jpg" alt="Ozark">
+          <div class="movie-info">
+            <div class="movie-title">Ozark</div>
+            <div class="movie-meta">
+              <span>93% coincidencia</span>
+              <span><i class="fas fa-plus"></i></span>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col">
-        <div class="card bg-dark border-0">
-          <img src="images/dark.jpg" class="card-img-top" alt="Dark">
-          <div class="card-body">
-            <h5 class="card-title text-white">Dark</h5>
+      <button class="scroll-button scroll-right" onclick="scrollRow(this, 1)"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <h2 class="section-title">Continuar viendo</h2>
+    <div class="row-container">
+      <button class="scroll-button scroll-left" onclick="scrollRow(this, -1)"><i class="fas fa-chevron-left"></i></button>
+      <div class="row-wrapper" id="row3">
+        <div class="movie-card">
+          <img src="https://image.tmdb.org/t/p/w500/5hNcsnMkwU2LknLoru73c76el3z.jpg" alt="Ozark">
+          <div class="movie-info">
+            <div class="movie-title">Ozark</div>
+            <div class="movie-meta">
+              <span>93% coincidencia</span>
+              <span><i class="fas fa-plus"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="movie-card">
+          <img src="https://image.tmdb.org/t/p/w500/1qpUk27LVI9UoTS7S0EixUBj5aR.jpg" alt="Money Heist">
+          <div class="movie-info">
+            <div class="movie-title">Money Heist</div>
+            <div class="movie-meta">
+              <span>99% coincidencia</span>
+              <span><i class="fas fa-plus"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="movie-card">
+          <img src="https://image.tmdb.org/t/p/w500/6fVX4FyPfQoA1WQHt6nNgmZgMe6.jpg" alt="Squid Game">
+          <div class="movie-info">
+            <div class="movie-title">Squid Game</div>
+            <div class="movie-meta">
+              <span>95% coincidencia</span>
+              <span><i class="fas fa-plus"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="movie-card">
+          <img src="https://image.tmdb.org/t/p/w500/vUUqzWa2LnHIVqkaKVlVGkVcZIW.jpg" alt="Peaky Blinders">
+          <div class="movie-info">
+            <div class="movie-title">Peaky Blinders</div>
+            <div class="movie-meta">
+              <span>96% coincidencia</span>
+              <span><i class="fas fa-plus"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="movie-card">
+          <img src="https://image.tmdb.org/t/p/w500/2Xx1q4Ld5nWSljY0hGXjAN6bCXJ.jpg" alt="Dark">
+          <div class="movie-info">
+            <div class="movie-title">Dark</div>
+            <div class="movie-meta">
+              <span>97% coincidencia</span>
+              <span><i class="fas fa-plus"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="movie-card">
+          <img src="https://image.tmdb.org/t/p/w500/7dFZJ2ZJJdcmkp05B9NWlqTJ5tq.jpg" alt="Black Mirror">
+          <div class="movie-info">
+            <div class="movie-title">Black Mirror</div>
+            <div class="movie-meta">
+              <span>94% coincidencia</span>
+              <span><i class="fas fa-plus"></i></span>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col">
-        <div class="card bg-dark border-0">
-          <img src="images/peaky-blinders.jpg" class="card-img-top" alt="Peaky Blinders">
-          <div class="card-body">
-            <h5 class="card-title text-white">Peaky Blinders</h5>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card bg-dark border-0">
-          <img src="images/squid-game.jpg" class="card-img-top" alt="Squid Game">
-          <div class="card-body">
-            <h5 class="card-title text-white">Squid Game</h5>
-          </div>
-        </div>
-      </div>
+      <button class="scroll-button scroll-right" onclick="scrollRow(this, 1)"><i class="fas fa-chevron-right"></i></button>
     </div>
   </div>
 
+  <footer>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+    <div class="footer-links">
+      <a href="#">Descripción de audio</a>
+      <a href="#">Centro de ayuda</a>
+      <a href="#">Tarjetas regalo</a>
+      <a href="#">Prensa</a>
+      <a href="#">Relaciones con inversionistas</a>
+      <a href="#">Empleo</a>
+      <a href="#">Términos de uso</a>
+      <a href="#">Privacidad</a>
+      <a href="#">Avisos legales</a>
+      <a href="#">Preferencias de cookies</a>
+      <a href="#">Información corporativa</a>
+      <a href="#">Contáctanos</a>
+    </div>
+    <p>© 2023 Netflix, Inc.</p>
+  </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Efecto de navbar al hacer scroll
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 100) {
+        document.querySelector('.navbar').classList.add('scrolled');
+      } else {
+        document.querySelector('.navbar').classList.remove('scrolled');
+      }
+    });
+    
+    // Función para desplazar las filas
+    function scrollRow(button, direction) {
+      const row = button.parentElement.querySelector('.row-wrapper');
+      row.scrollBy({
+        left: direction * 300,
+        behavior: 'smooth'
+      });
+    }
+    
+    // Efecto hover en las tarjetas
+    document.querySelectorAll('.movie-card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.1)';
+        this.style.zIndex = '10';
+        const img = this.querySelector('img');
+        img.style.height = '150px';
+        img.style.boxShadow = '0 10px 20px rgba(0,0,0,0.5)';
+        this.querySelector('.movie-info').style.opacity = '1';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1)';
+        this.style.zIndex = '1';
+        const img = this.querySelector('img');
+        img.style.height = '120px';
+        img.style.boxShadow = 'none';
+        this.querySelector('.movie-info').style.opacity = '0';
+      });
+    });
+  </script>
 </body>
 </html>
