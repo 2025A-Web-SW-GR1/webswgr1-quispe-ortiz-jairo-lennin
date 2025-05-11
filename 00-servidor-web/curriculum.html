@@ -4,107 +4,175 @@
     <meta charset="UTF-8">
     <title>Currículum Vitae - Jairo Quispe</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 40px;
-            background-color: #f5f7fa;
-            color: #333;
-        }
+        /* Google Font para elegancia moderna */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
-        h1 {
-            font-size: 2em;
+        * {
             margin: 0;
-            color: #1a237e;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        h2 {
-            font-size: 1.2em;
-            margin-top: 5px;
-            color: #3949ab;
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #f0f2f5;
+            color: #2c3e50;
+            padding: 40px;
+            line-height: 1.6;
         }
 
-        h3 {
+        .container {
+            background: #ffffff;
+            border-radius: 12px;
+            max-width: 900px;
+            margin: auto;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
             border-bottom: 2px solid #1a237e;
-            padding-bottom: 4px;
-            margin-top: 30px;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header img {
+            width: 180px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 3px solid #1a237e;
+        }
+
+        .header-text h1 {
+            font-size: 2.4em;
             color: #1a237e;
+            margin-bottom: 8px;
         }
 
-        table {
-            width: 100%;
-            margin-bottom: 20px;
+        .header-text h2 {
+            font-size: 1.3em;
+            color: #3949ab;
+            margin-bottom: 10px;
         }
 
-        img {
-            border-radius: 10px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        .header-text p {
+            font-size: 1em;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: #1a237e;
+            border-left: 5px solid #3949ab;
+            padding-left: 10px;
+        }
+
+        .section p,
+        .section li {
+            font-size: 1.05em;
+            margin-bottom: 10px;
         }
 
         ul {
-            list-style: none;
-            padding-left: 0;
+            padding-left: 20px;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 25px;
         }
 
         ul li::before {
-            content: "✔️ ";
-            color: #1b5e20;
-        }
-
-        p, li {
-            font-size: 1em;
-            line-height: 1.5em;
+            content: "✔";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #2e7d32;
+            font-weight: bold;
         }
 
         hr {
             border: none;
-            border-top: 2px solid #ccc;
-            margin: 30px 0;
+            height: 2px;
+            background: linear-gradient(to right, #1a237e, #3949ab);
+            margin: 40px 0;
         }
 
         strong {
             color: #0d47a1;
         }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .header-text h1 {
+                font-size: 2em;
+            }
+
+            .header-text h2 {
+                font-size: 1.1em;
+            }
+
+            .header img {
+                width: 140px;
+            }
+        }
     </style>
 </head>
 <body>
-    <table>
-        <tr>
-            <td width="200">
-                <img src="../images/jairod.jpg" alt="Foto de Jairo" width="180">
-            </td>
-            <td>
+    <div class="container">
+        <div class="header">
+            <img src="../images/jairod.jpg" alt="Foto de Jairo">
+            <div class="header-text">
                 <h1>Jairo Lennin Quispe Ortiz</h1>
                 <h2>Estudiante de Ingeniería de Sistemas - EPN</h2>
                 <p><strong>Celular:</strong> 0985782484<br>
                 <strong>Correo:</strong> jairoquispe2409@gmail.com</p>
-            </td>
-        </tr>
-    </table>
+            </div>
+        </div>
 
-    <hr>
+        <div class="section">
+            <h3>Perfil Profesional</h3>
+            <p>
+                Estudiante comprometido con la innovación tecnológica. Presidente de la Asociación de Estudiantes de la FIS, con experiencia en liderazgo, organización de eventos y representación estudiantil. Interesado en desarrollo backend y análisis de datos como herramientas de cambio.
+            </p>
+        </div>
 
-    <h3>Perfil Profesional</h3>
-    <p>
-        Estudiante comprometido con la innovación tecnológica. Presidente de la Asociación de Estudiantes de la FIS, con experiencia en liderazgo, organización de eventos y representación estudiantil. Interesado en desarrollo backend y análisis de datos como herramientas de cambio.
-    </p>
+        <div class="section">
+            <h3>Educación</h3>
+            <ul>
+                <li><strong>Bachiller en Ciencias</strong></li>
+                <li><strong>Certificaciones:</strong> Udemy, Cisco (Redes, Python, SQL)</li>
+            </ul>
+        </div>
 
-    <h3>Educación</h3>
-    <ul>
-        <li><strong>Bachiller en Ciencias</strong></li>
-        <li><strong>Certificaciones:</strong> Udemy, Cisco (Redes, Python, SQL)</li>
-    </ul>
+        <div class="section">
+            <h3>Experiencia Laboral</h3>
+            <ul>
+                <li><strong>BAQ</strong> – Asistente temporal</li>
+                <li><strong>Panaderías locales</strong> – Cajero y atención al cliente</li>
+            </ul>
+        </div>
 
-    <h3>Experiencia Laboral</h3>
-    <ul>
-        <li><strong>BAQ</strong> – Asistente temporal</li>
-        <li><strong>Panaderías locales</strong> – Cajero y atención al cliente</li>
-    </ul>
-
-    <h3>Habilidades</h3>
-    <ul>
-        <li>Habilidades blandas: liderazgo, comunicación, trabajo en equipo</li>
-        <li>Desarrollo backend: Node.js, Java, SQL, Typescript</li>
-        <li>Análisis de datos: Python, Excel, herramientas de visualización</li>
-    </ul>
+        <div class="section">
+            <h3>Habilidades</h3>
+            <ul>
+                <li>Habilidades blandas: liderazgo, comunicación, trabajo en equipo</li>
+                <li>Desarrollo backend: Node.js, Java, SQL</li>
+                <li>Análisis de datos: Python, Excel, herramientas de visualización</li>
+            </ul>
+        </div>
+    </div>
 </body>
 </html>
