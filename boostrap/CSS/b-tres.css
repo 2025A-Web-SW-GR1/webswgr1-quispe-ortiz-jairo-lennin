@@ -1,0 +1,14 @@
+/* Estilos adicionales */
+body {
+    background-color: #f5f5f5;
+}
+
+.custom-card-3 {
+    background-color: #fff;
+    border: 2px solid #e74c3c;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.custom-card-3 .card-title {
+    color: #e74c3c;
+}

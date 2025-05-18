@@ -1,0 +1,14 @@
+/* Estilos secundarios */
+.subtitle {
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+.custom-card-2 {
+    background-color: #e8f4fc;
+    border: 2px solid #2ecc71;
+}
+
+.custom-card-2 .card-title {
+    color: #2ecc71;
+}
