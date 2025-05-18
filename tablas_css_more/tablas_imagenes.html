@@ -2,20 +2,58 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Ejemplo de imagen y enlace</title>
+  <title>Selectores en CSS</title>
+  <style>
+    /* Selector por ID aplicado a títulos */
+    #titulo {
+      color: darkgreen;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    /* Selectores de clase */
+    .importante {
+      font-weight: bold;
+      color: crimson;
+    }
+
+    .nota {
+      font-style: italic;
+      color: gray;
+    }
+
+    /* Estilo para enlaces dentro de elementos li */
+    li > a {
+      text-decoration: none;
+      color: blue;
+    }
+
+    /* Estilo solo para el primer elemento de una lista */
+    ul > li:first-child {
+      background-color: #e0ffe0;
+    }
+
+    /* Estilo para todos los elementos impares de una lista */
+    ul > li:nth-child(odd) {
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
 
-  <h2>Insertar una imagen</h2>
-  <p>A continuación se muestra cómo insertar una imagen desde una ruta relativa:</p>
+  <h1 id="titulo">Encabezado principal</h1>
+  <h2 id="titulo">Subtítulo 1</h2>
+  <h3 id="titulo">Subtítulo 2</h3>
 
-  <img src="../images/jairod.jpg" alt="Foto de Jairo" width="250">
+  <p class="importante">Este texto es importante y está en rojo oscuro.</p>
+  <p class="nota">Este texto es una nota y está en cursiva y gris.</p>
 
-  <h2>Imagen dentro de un enlace</h2>
-  <p>Haz clic en la imagen para ir a otra página:</p>
-  <a href="pagina2.html">
-    <img src="../images/jairod.jpg" alt="Foto de Jairo" width="250">
-  </a>
+  <ul>
+    <li><a href="#">Enlace uno</a></li>
+    <li><a href="#">Enlace dos</a></li>
+    <li><a href="#">Enlace tres</a></li>
+    <li><a href="#">Enlace cuatro</a></li>
+  </ul>
 
 </body>
 </html>
