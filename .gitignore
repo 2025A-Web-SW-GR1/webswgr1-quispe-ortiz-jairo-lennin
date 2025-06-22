@@ -1,0 +1,23 @@
+# Archivos generados por Node.js y npm
+node_modules/
+package-lock.json
+npm-debug.log
+
+# Carpeta de compilación de TypeScript
+dist/
+
+# Archivos de entorno (variables sensibles)
+.env
+.env.local
+
+# Configuración de IDE
+.vscode/
+.idea/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
